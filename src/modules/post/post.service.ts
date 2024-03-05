@@ -7,7 +7,7 @@ export class PostService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: PostDTO) {
-    const post = await this.prisma.posts.create({
+    const post = await this.prisma.post.create({
       data,
     });
 
@@ -15,13 +15,13 @@ export class PostService {
   }
 
   async findAll() {
-    return this.prisma.posts.findMany();
+    return this.prisma.post.findMany();
   }
 
   async findUnique(id: number, data: PostDTO) {
     const postId = parseInt(id.toString()); //Garantindo "Int" para id
 
-    const postExists = await this.prisma.posts.findUnique({
+    const postExists = await this.prisma.post.findUnique({
       where: {
         id: postId,
       },
@@ -31,7 +31,7 @@ export class PostService {
       throw new Error('Post Not Found');
     }
 
-    return await this.prisma.posts.findUnique({
+    return await this.prisma.post.findUnique({
       where: {
         id: postId,
       },
@@ -40,7 +40,7 @@ export class PostService {
 
   async update(id: number, data: PostDTO) {
     const postId = parseInt(id.toString());
-    const postExists = await this.prisma.posts.findUnique({
+    const postExists = await this.prisma.post.findUnique({
       where: {
         id: postId,
       },
@@ -50,7 +50,7 @@ export class PostService {
       throw new Error('Post does not exists');
     }
 
-    return await this.prisma.posts.update({
+    return await this.prisma.post.update({
       data,
       where: {
         id: postId,
@@ -61,7 +61,7 @@ export class PostService {
   async delete(id: number) {
     const postId = parseInt(id.toString());
 
-    const postExists = await this.prisma.posts.findUnique({
+    const postExists = await this.prisma.post.findUnique({
       where: {
         id: postId,
       },
@@ -71,7 +71,7 @@ export class PostService {
       throw new Error('Post does not exists');
     }
 
-    return await this.prisma.posts.delete({
+    return await this.prisma.post.delete({
       where: {
         id: postId,
       },

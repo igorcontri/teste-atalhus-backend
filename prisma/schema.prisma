@@ -18,7 +18,7 @@ model Post {
   title String
   content String
   author String
-  date DateTime
+  date DateTime @default(now())
 
   //salvar tabela como "posts"
   @@map("posts")
