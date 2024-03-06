@@ -14,7 +14,6 @@ import { PostDTO } from './post.dto';
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
-  // HTTP Methods
   @Post()
   async create(@Body() data: PostDTO) {
     return this.postService.create(data);
@@ -26,8 +25,8 @@ export class PostController {
   }
 
   @Get(':id')
-  async findUnique(@Param('id') id: number, @Body() data: PostDTO) {
-    return this.postService.findUnique(id, data);
+  async findUnique(@Param('id') id: number) {
+    return this.postService.findUnique(id);
   }
 
   @Put(':id')

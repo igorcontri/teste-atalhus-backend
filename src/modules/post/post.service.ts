@@ -18,7 +18,7 @@ export class PostService {
     return this.prisma.post.findMany();
   }
 
-  async findUnique(id: number, data: PostDTO) {
+  async findUnique(id: number) {
     const postId = parseInt(id.toString()); //Garantindo "Int" para id
 
     const postExists = await this.prisma.post.findUnique({
